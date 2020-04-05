@@ -18,6 +18,8 @@
 //  MARK: - Definitions
 static
 size_t const max_data = 400;
+static
+size_t const max_str = 9;
 
 void do_qsort(void);
 void do_qsort_r(void);
@@ -26,6 +28,8 @@ void do_mergesort(void);
 void do_radixsort(void);
 int * arrayinit(int data[max_data]);
 void display(int data[max_data], size_t cols);
+size_t setupstrings(char const * strings[max_str]);
+void displaystrings(char const * strings[max_str], size_t cols);
 
 static
 int int_compare(void const * p1, void const * p2);
@@ -38,6 +42,34 @@ int int_compare_r(void * thunkIn, void const * aIn, void const * bIn);
 static
 int int_compare_r(void const * aIn, void const * bIn, void * thunkIn);
 #endif
+
+//  test data
+static
+char const * sstrings[max_str] = {
+  "XYZZY", "PLUGH", "PLOVER",
+  "Xyzzy", "Plugh", "Plover",
+  "xyzzy", "plugh", "plover",
+};
+static
+size_t sstrings_l = sizeof(sstrings) / sizeof(sstrings[0]);
+
+/*
+ *  MARK: radixsort - function pointer
+ */
+typedef
+int (*rdxsrt)(const unsigned char ** __base,
+              int __nel,
+              const unsigned char * __table,
+              unsigned __endbyte);
+
+/*
+ *  MARK: structure srdxsrt
+ */
+struct srdxsrt {
+  rdxsrt pfunc;
+  char name[40];
+};
+typedef struct srdxsrt srdxsrt;
 
 //  MARK: - Implementation
 /*
@@ -153,24 +185,6 @@ void do_qsort_r(void) {
 }
 
 /*
- *  MARK: radixsort - function pointer
- */
-typedef
-int (*rdxsrt)(const unsigned char ** __base,
-              int __nel,
-              const unsigned char * __table,
-              unsigned __endbyte);
-
-/*
- *  MARK: structure srdxsrt
- */
-struct srdxsrt {
-  rdxsrt pfunc;
-  char name[40];
-};
-typedef struct srdxsrt srdxsrt;
-
-/*
  *  MARK: do_radixsort()
  */
 void do_radixsort(void) {
@@ -229,33 +243,65 @@ void do_radixsort(void) {
             break;
         }
 
-        char const * strings[] = {
-          "XYZZY", "PLUGH", "PLOVER",
-          "Xyzzy","Plugh","Plover",
-          "xyzzy","plugh","plover",
-        };
-        size_t strings_l = sizeof(strings) / sizeof(strings[0]);
-        unsigned char const ** pstrings = (unsigned char const **) strings;
+//        char const * strings[] = {
+//          "XYZZY", "PLUGH", "PLOVER",
+//          "Xyzzy","Plugh","Plover",
+//          "xyzzy","plugh","plover",
+//        };
+//        size_t strings_l = sizeof(strings) / sizeof(strings[0]);
+
+        char const * strings[max_str];
+        size_t strings_l = setupstrings(strings);
 
         size_t cols = 3;
-        for (size_t i_ = 0; i_ < strings_l; ++i_) {
-          printf("%10s%c",
-                 strings[i_],
-                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
-        }
-        putchar('\n');
+//        for (size_t i_ = 0; i_ < strings_l; ++i_) {
+//          printf("%10s%c",
+//                 strings[i_],
+//                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
+//        }
+//        putchar('\n');
+        displaystrings(strings, cols);
 
+        unsigned char const ** pstrings = (unsigned char const **) strings;
         frdxort(pstrings, (int) strings_l, ptable, endbyte);
 
-        for (size_t i_ = 0; i_ < strings_l; ++i_) {
-          printf("%10s%c",
-                 strings[i_],
-                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
-        }
-        putchar('\n');
+//        for (size_t i_ = 0; i_ < strings_l; ++i_) {
+//          printf("%10s%c",
+//                 strings[i_],
+//                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
+//        }
+//        putchar('\n');
+        displaystrings(strings, cols);
       }
     }
   }
+
+  return;
+}
+
+/*
+ *  MARK: setupstrings()
+ */
+size_t setupstrings(char const * strings[max_str]) {
+
+  for (size_t s_ = 0; s_ < max_str; ++s_) {
+    strings[s_] = sstrings[s_];
+  }
+
+  return sstrings_l;
+}
+
+/*
+ *  MARK: displaystrings()
+ */
+void displaystrings(char const * strings[max_str], size_t cols) {
+
+  for (size_t i_ = 0; i_ < max_str; ++i_) {
+    printf("%10s%c",
+           strings[i_],
+           (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
+  }
+  putchar('\n');
 
   return;
 }

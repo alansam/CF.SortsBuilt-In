@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5AC796E02439455800DD60D9 /* sorter.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796DF2439455800DD60D9 /* sorter.c */; };
+		5AC796E92439B48E00DD60D9 /* s_qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796E82439B48E00DD60D9 /* s_qsort.c */; };
+		5AC796EC2439B5EA00DD60D9 /* s_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796EB2439B5EA00DD60D9 /* s_tools.c */; };
+		5AC796EF2439BAB300DD60D9 /* s_heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796EE2439BAB300DD60D9 /* s_heapsort.c */; };
+		5AC796F22439BB5C00DD60D9 /* s_callbacks.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796F12439BB5C00DD60D9 /* s_callbacks.c */; };
+		5AC796F52439BC8300DD60D9 /* s_mergesort.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796F42439BC8300DD60D9 /* s_mergesort.c */; };
+		5AC796F82439BD5F00DD60D9 /* s_radixsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796F72439BD5F00DD60D9 /* s_radixsort.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,19 @@
 /* Begin PBXFileReference section */
 		5AC796DC2439455800DD60D9 /* CF.SortsBuilt-In */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CF.SortsBuilt-In"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC796DF2439455800DD60D9 /* sorter.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sorter.c; sourceTree = "<group>"; };
+		5AC796E62439B3B800DD60D9 /* sorter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sorter.h; sourceTree = "<group>"; };
+		5AC796E72439B48E00DD60D9 /* s_qsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_qsort.h; sourceTree = "<group>"; };
+		5AC796E82439B48E00DD60D9 /* s_qsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_qsort.c; sourceTree = "<group>"; };
+		5AC796EA2439B5EA00DD60D9 /* s_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_tools.h; sourceTree = "<group>"; };
+		5AC796EB2439B5EA00DD60D9 /* s_tools.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_tools.c; sourceTree = "<group>"; };
+		5AC796ED2439BAB300DD60D9 /* s_heapsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_heapsort.h; sourceTree = "<group>"; };
+		5AC796EE2439BAB300DD60D9 /* s_heapsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_heapsort.c; sourceTree = "<group>"; };
+		5AC796F02439BB5C00DD60D9 /* s_callbacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_callbacks.h; sourceTree = "<group>"; };
+		5AC796F12439BB5C00DD60D9 /* s_callbacks.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_callbacks.c; sourceTree = "<group>"; };
+		5AC796F32439BC8300DD60D9 /* s_mergesort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_mergesort.h; sourceTree = "<group>"; };
+		5AC796F42439BC8300DD60D9 /* s_mergesort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_mergesort.c; sourceTree = "<group>"; };
+		5AC796F62439BD5F00DD60D9 /* s_radixsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = s_radixsort.h; sourceTree = "<group>"; };
+		5AC796F72439BD5F00DD60D9 /* s_radixsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = s_radixsort.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +77,19 @@
 			isa = PBXGroup;
 			children = (
 				5AC796DF2439455800DD60D9 /* sorter.c */,
+				5AC796E62439B3B800DD60D9 /* sorter.h */,
+				5AC796E82439B48E00DD60D9 /* s_qsort.c */,
+				5AC796E72439B48E00DD60D9 /* s_qsort.h */,
+				5AC796EE2439BAB300DD60D9 /* s_heapsort.c */,
+				5AC796ED2439BAB300DD60D9 /* s_heapsort.h */,
+				5AC796F42439BC8300DD60D9 /* s_mergesort.c */,
+				5AC796F32439BC8300DD60D9 /* s_mergesort.h */,
+				5AC796F72439BD5F00DD60D9 /* s_radixsort.c */,
+				5AC796F62439BD5F00DD60D9 /* s_radixsort.h */,
+				5AC796EB2439B5EA00DD60D9 /* s_tools.c */,
+				5AC796EA2439B5EA00DD60D9 /* s_tools.h */,
+				5AC796F12439BB5C00DD60D9 /* s_callbacks.c */,
+				5AC796F02439BB5C00DD60D9 /* s_callbacks.h */,
 			);
 			path = "CF.SortsBuilt-In";
 			sourceTree = "<group>";
@@ -119,7 +151,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC796F82439BD5F00DD60D9 /* s_radixsort.c in Sources */,
+				5AC796F52439BC8300DD60D9 /* s_mergesort.c in Sources */,
 				5AC796E02439455800DD60D9 /* sorter.c in Sources */,
+				5AC796EF2439BAB300DD60D9 /* s_heapsort.c in Sources */,
+				5AC796E92439B48E00DD60D9 /* s_qsort.c in Sources */,
+				5AC796EC2439B5EA00DD60D9 /* s_tools.c in Sources */,
+				5AC796F22439BB5C00DD60D9 /* s_callbacks.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

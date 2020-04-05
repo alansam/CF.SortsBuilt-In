@@ -16,11 +16,25 @@
 #include <string.h>
 
 //  MARK: - Definitions
+//  MARK: Constants
 static
 size_t const max_data = 400;
 static
 size_t const max_str = 9;
+static
+char const * const alpha = "abcdefghijklmnopqrstuvwxyz";
+static
+char const * const Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+static
+char const * sstrings[max_str] = {
+  "XYZZY", "PLUGH", "PLOVER",
+  "Xyzzy", "Plugh", "Plover",
+  "xyzzy", "plugh", "plover",
+};
+static
+size_t sstrings_l = sizeof(sstrings) / sizeof(sstrings[0]);
 
+//  MARK: function prototypes
 void do_qsort(void);
 void do_qsort_r(void);
 void do_heapsort(void);
@@ -31,6 +45,7 @@ void display(int data[max_data], size_t cols);
 size_t setupstrings(char const * strings[max_str]);
 void displaystrings(char const * strings[max_str], size_t cols);
 
+//  MARK: sorting callback prototypes
 static
 int int_compare(void const * p1, void const * p2);
 
@@ -43,16 +58,7 @@ static
 int int_compare_r(void const * aIn, void const * bIn, void * thunkIn);
 #endif
 
-//  test data
-static
-char const * sstrings[max_str] = {
-  "XYZZY", "PLUGH", "PLOVER",
-  "Xyzzy", "Plugh", "Plover",
-  "xyzzy", "plugh", "plover",
-};
-static
-size_t sstrings_l = sizeof(sstrings) / sizeof(sstrings[0]);
-
+//  MARK: structures, typedefs, etc.
 /*
  *  MARK: radixsort - function pointer
  */
@@ -190,25 +196,22 @@ void do_qsort_r(void) {
 void do_radixsort(void) {
   printf("Fnuction: %s\n", __func__);
 
-  srdxsrt fns[] = {
-    { .pfunc = radixsort,  .name = "radixsort  - radix sort", },
-    { .pfunc = sradixsort, .name = "sradixsort - stable radix sort", },
-  };
-  size_t fns_l = sizeof(fns) / sizeof(*fns);
-
   unsigned char table[UCHAR_MAX + 1];
   for (size_t c_ = 0; c_ < UCHAR_MAX + 1; ++c_) {
     table[c_] = c_;
   }
-
-  char const * alpha = "abcdefghijklmnopqrstuvwxyz";
-  char const * Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   for (size_t c_ = 0; c_ < strlen(alpha); ++c_) {
     char ac = alpha[c_];
     char Ac = Alpha[c_];
     table[ac] = Ac;
   }
+
+  srdxsrt fns[] = {
+    { .pfunc = radixsort,  .name = "radixsort  - radix sort", },
+    { .pfunc = sradixsort, .name = "sradixsort - stable radix sort", },
+  };
+  size_t fns_l = sizeof(fns) / sizeof(*fns);
 
   unsigned char * ptables[] = {
     NULL, table,
@@ -217,60 +220,41 @@ void do_radixsort(void) {
 
   enum tbl { ASC = 0x00, DESC, };
 
-  for (size_t f_ = 0; f_ < fns_l; ++f_) {
-    srdxsrt zrdxort = fns[f_];
-    rdxsrt frdxort = zrdxort.pfunc;
-    printf("%s\n", zrdxort.name);
+  for (size_t v_ = 0; v_ < ptables_l; ++v_) {
+    printf("Pass %2zu\n", v_);
+    unsigned char * ptable;
+    ptable = ptables[v_];
 
-    for (size_t v_ = 0; v_ < ptables_l; ++v_) {
-      printf("Pass %2zu\n", v_);
-      unsigned char * ptable;
-      ptable = ptables[v_];
+    for (unsigned order = ASC; order <= DESC; ++order) {
+      unsigned endbyte;
 
-      for (unsigned order = ASC; order <= DESC; ++order) {
-        unsigned endbyte;
+      switch (order) {
+        default:
+        case ASC:
+          puts("Ascending");
+          endbyte = 0x00;
+          break;
+        
+        case DESC:
+          puts("Descending");
+          endbyte = 0xff;
+          break;
+      }
 
-        switch (order) {
-          default:
-          case ASC:
-            puts("Ascending");
-            endbyte = 0x00;
-            break;
-          
-          case DESC:
-            puts("Descending");
-            endbyte = 0xff;
-            break;
-        }
-
-//        char const * strings[] = {
-//          "XYZZY", "PLUGH", "PLOVER",
-//          "Xyzzy","Plugh","Plover",
-//          "xyzzy","plugh","plover",
-//        };
-//        size_t strings_l = sizeof(strings) / sizeof(strings[0]);
+      for (size_t f_ = 0; f_ < fns_l; ++f_) {
+        srdxsrt zrdxort = fns[f_];
+        rdxsrt frdxort = zrdxort.pfunc;
+        printf("%s\n", zrdxort.name);
 
         char const * strings[max_str];
         size_t strings_l = setupstrings(strings);
 
         size_t cols = 3;
-//        for (size_t i_ = 0; i_ < strings_l; ++i_) {
-//          printf("%10s%c",
-//                 strings[i_],
-//                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
-//        }
-//        putchar('\n');
         displaystrings(strings, cols);
 
         unsigned char const ** pstrings = (unsigned char const **) strings;
         frdxort(pstrings, (int) strings_l, ptable, endbyte);
 
-//        for (size_t i_ = 0; i_ < strings_l; ++i_) {
-//          printf("%10s%c",
-//                 strings[i_],
-//                 (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
-//        }
-//        putchar('\n');
         displaystrings(strings, cols);
       }
     }
@@ -306,6 +290,7 @@ void displaystrings(char const * strings[max_str], size_t cols) {
   return;
 }
 
+//  MARK: - Helper functions
 /*
  *  MARK: arrayinit()
  */
@@ -336,6 +321,7 @@ void display(int data[max_data], size_t cols) {
   return;
 }
 
+//  MARK: - Sort comparitor callbacks
 /*
  *  Custom comparison function that  compares 'int' values through pointers
  *  passed by qsort(3).

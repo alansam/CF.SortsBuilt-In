@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AC796E02439455800DD60D9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796DF2439455800DD60D9 /* main.c */; };
+		5AC796E02439455800DD60D9 /* sorter.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AC796DF2439455800DD60D9 /* sorter.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		5AC796DC2439455800DD60D9 /* CF.SortsBuilt-In */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CF.SortsBuilt-In"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5AC796DF2439455800DD60D9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		5AC796DF2439455800DD60D9 /* sorter.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sorter.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 		5AC796DE2439455800DD60D9 /* CF.SortsBuilt-In */ = {
 			isa = PBXGroup;
 			children = (
-				5AC796DF2439455800DD60D9 /* main.c */,
+				5AC796DF2439455800DD60D9 /* sorter.c */,
 			);
 			path = "CF.SortsBuilt-In";
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AC796E02439455800DD60D9 /* main.c in Sources */,
+				5AC796E02439455800DD60D9 /* sorter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +241,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HD3NHZ5324;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu18;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -251,6 +252,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HD3NHZ5324;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu18;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

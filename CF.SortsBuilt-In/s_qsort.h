@@ -10,6 +10,10 @@
 #ifndef s_qsort_h
 #define s_qsort_h
 
+#if !defined(__APPLE__) && !defined(_GNU_SOURCE)
+# define _GNU_SOURCE
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

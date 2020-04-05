@@ -10,6 +10,10 @@
 #ifndef s_mergesort_h
 #define s_mergesort_h
 
+#if !defined(__APPLE__) && !defined(_GNU_SOURCE)
+# define _GNU_SOURCE
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

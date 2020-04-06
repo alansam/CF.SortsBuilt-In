@@ -42,7 +42,7 @@ void displaystrings(char const * strings[max_str], size_t cols) {
   for (size_t i_ = 0; i_ < max_str; ++i_) {
     printf("%10s%c",
            strings[i_],
-           (i_ % cols == cols - 1 || i_ == (size_t) strings - 1) ? '\n' : ' ');
+           (i_ % cols == cols - 1 || i_ == max_str - 1) ? '\n' : ' ');
   }
   putchar('\n');
 
@@ -72,7 +72,7 @@ void display(int data[max_data], size_t cols) {
   for (size_t i_ = 0; i_ < max_data; ++i_) {
     printf("%6d%c",
        data[i_],
-       (i_ % cols == cols - 1 || i_ == (size_t) data - 1) ? '\n' : ' ');
+       (i_ % cols == cols - 1 || i_ == max_data - 1) ? '\n' : ' ');
   }
   putchar('\n');
 
